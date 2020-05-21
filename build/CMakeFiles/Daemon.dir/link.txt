@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/Daemon.dir/src/daemon/main.cpp.o CMakeFiles/Daemon.dir/src/daemon/detail/daemon_body.cpp.o CMakeFiles/Daemon.dir/src/common/log_writer.cpp.o CMakeFiles/Daemon.dir/src/daemon/detail/monitor_proc.cpp.o  -o Daemon  -lpthread 

@@ -1,3 +1,0 @@
-/home/deimos/projects/TCP-File-Transfer/build/CMakeFiles/rebuild_cache.dir
-/home/deimos/projects/TCP-File-Transfer/build/CMakeFiles/edit_cache.dir
-/home/deimos/projects/TCP-File-Transfer/build/CMakeFiles/Daemon.dir

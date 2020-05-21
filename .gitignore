@@ -1,12 +1,13 @@
 # Cmake
-**/CmakeFiles
+build/
+**/CmakeFiles/
 **/*.cmake
 **/CmakeCache.txt
 **/*.log
 **/Makefile
 
 # VS code
-**/.vscode
+**/.vscode/
 
 # MacOS
 .DS_Store
