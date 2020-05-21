@@ -2,6 +2,8 @@
 #define DAEMON_BODY
 
 #include <thread>
+#include <functional>
+#include <signal.h>
 
 class WorkProc
 {
@@ -12,15 +14,12 @@ public:
 	int run();
 
 private:
-	
 
-	struct sigaction sigact;
-	sigset_t sigset;
-	int signo;
-
+	struct sigaction m_sigact;
+	sigset_t m_sigset;
+	int m_signo;
 	std::thread m_task_worker;
 	std::function<void()> m_task;
-
 };
 
 #endif

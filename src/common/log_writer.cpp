@@ -11,11 +11,11 @@
 #include <sys/resource.h>
 #include <time.h>
 
-void WriteLog(const char* Msg, ...)
+void WriteLog(std::string file_path, const char* Msg, ...)
 {
-    FILE* f_ptr = fopen(LOG_FILE, "a");
+    FILE* f_ptr = fopen(file_path.c_str(), "a");
     if (f_ptr != NULL) {
-        // Write curr time to file
+
         char buff[20];
         struct tm *sTm;
         time_t now = time (0);

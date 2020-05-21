@@ -1,0 +1,9 @@
+# Cmake
+**/CmakeFiles
+**/*.cmake
+**/CmakeCache.txt
+**/*.log
+**/Makefile
+
+# VS code
+**/.vscode
