@@ -1,3 +1,6 @@
+#ifndef DAEMON
+#define DAEMON
+
 #include <functional>
 #include <sys/stat.h>
 #include <thread>
@@ -37,3 +40,5 @@ int demonize(std::function<void()> task)
 		return 0;
 	}
 }
+
+#endif
