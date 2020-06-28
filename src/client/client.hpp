@@ -10,7 +10,6 @@ public:
 
     void send(const std::string& t_file_name);
 
-
 private:
     void send_file_content(std::string_view t_data_to_send);
     void send_file_size(const std::size_t t_file_size);

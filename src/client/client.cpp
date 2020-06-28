@@ -1,12 +1,7 @@
 #include "client.hpp"
 
 #include <iostream>
-#include <fcntl.h>
 #include <sys/mman.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <cstring>
 
 Client::Client(boost::asio::io_service &t_io_service, const std::string t_host, const std::size_t t_port, const boost::asio::ip::tcp& t_protocol_type)
     : m_io_service(t_io_service),
@@ -55,7 +50,7 @@ void Client::send_file_content(std::string_view t_data_to_send)
     boost::system::error_code error;
     m_socket.write_some(boost::asio::buffer(t_data_to_send.data(), t_data_to_send.size()), error);
     if (error) {
-        std::cerr << "[ERROR] Error while sending file data ocurred\n";
+        std::cerr << "[ERROR] Error ocurred while sending file data\n";
     }
 
     std::clog << "[INFO] Sending file data success\n";
@@ -68,7 +63,7 @@ void Client::send_file_size(const std::size_t t_file_size)
     auto file_size_str = std::to_string(t_file_size);
     m_socket.write_some(boost::asio::buffer(file_size_str.c_str(), file_size_str.size()), error);
     if (error) {
-        std::cerr << "[ERROR] Error while sending file size ocurred\n";
+        std::cerr << "[ERROR] Error ocurred while sending file size\n";
     }
 
     std::clog << "[INFO] Sending file size success\n";

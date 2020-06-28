@@ -2,12 +2,7 @@
 
 #include <iostream>
 #include <boost/bind.hpp>
-#include <fcntl.h>
 #include <sys/mman.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <cstring>
 
 Session::Session(boost::asio::io_service &t_io_service, const std::string& t_file_dir_path)
     : m_socket(t_io_service),
@@ -70,21 +65,21 @@ void Session::mapNewFile(const std::size_t t_file_size)
     std::string file_name_template = m_file_dir_path + "/XXXXXX";
     std::string file_name (mktemp(const_cast<char*>(file_name_template.data())));
 
-    int fdout;
-    if ((fdout = open(file_name.c_str(), O_RDWR | O_CREAT)) < 0) {
+    int file_out;
+    if ((file_out = open(file_name.c_str(), O_RDWR | O_CREAT)) < 0) {
         std::cerr << "[ERROR] Can't create file\n";
     }
 
-    if (lseek(fdout, t_file_size - 1, SEEK_SET) == -1) {
+    if (lseek(file_out, t_file_size - 1, SEEK_SET) == -1) {
         std::cerr << "[ERROR] Can't lseek file\n";
     }
 
-    if (write(fdout, "", 1) != 1) {
+    if (write(file_out, "", 1) != 1) {
         std::cerr << "[ERROR] Can't write to file\n";
     }
 
     void* file_mapping_ptr;
-    if ((file_mapping_ptr = mmap(0, t_file_size, PROT_READ | PROT_WRITE, MAP_SHARED, fdout, 0)) == MAP_FAILED) {
+    if ((file_mapping_ptr = mmap(0, t_file_size, PROT_READ | PROT_WRITE, MAP_SHARED, file_out, 0)) == MAP_FAILED) {
         std::cerr << "[ERROR] Can't map file\n";
     }
 

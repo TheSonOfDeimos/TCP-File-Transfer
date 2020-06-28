@@ -2,7 +2,6 @@
 #include <boost/thread/thread.hpp>
 #include "server.hpp"
 
-
 int main(int argc, char *argv[])
 {
     try
