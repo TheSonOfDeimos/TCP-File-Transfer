@@ -9,7 +9,12 @@
 #define CHILD_NEED_TERMINATE	        2
 #define RESTART_TIMEOUT                 1 // in secods
 
+#ifdef __APPLE__
+#define LOG(LABEL, ...)                 WriteLog(LOG_FILE, LABEL, ##__VA_ARGS__)
+#endif
+
+#ifdef __linux__
 #define LOG(LABEL, ...)                 WriteLog(LOG_FILE, LABEL __VA_OPT__(,) __VA_ARGS__)
-//#define LOG(LABEL)                      WriteLog(LOG_FILE, LABEL)
+#endif
 
 #endif // CONFIG

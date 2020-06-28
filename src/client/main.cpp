@@ -1,13 +1,21 @@
-#include "client.h"
+#include <iostream>
+#include "client.hpp"
 
 int main(int argc, char *argv[])
 {
-    // connect several clients
-    ip::tcp::endpoint ep( ip::address::from_string("127.0.0.1"), 8001);
-    char* messages[] = { "John says hi", "so does James", "Lucy just got home", 0 };
-    for ( char ** message = messages; *message; ++message) {
-        talk_to_svr::start(ep, *message);
-        boost::this_thread::sleep( boost::posix_time::millisec(100));
+    try
+    {
+        boost::asio::io_service io_service;
+        Client client(io_service, "localhost", 8888);
+        io_service.run();
+
+        std::string file_to_send = "/Users/levkargalov/Documents/Projects/Programming/C++/TCP-File-Transfer/test_files/input.txt";
+        client.send(file_to_send);
     }
-    service.run();
+    catch (std::exception &e)
+    {
+        std::cerr << "Exception: " << e.what() << "\n";
+    }
+
+    return 0;
 }
